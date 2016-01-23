@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>使用JSX定义React组件－动态子组件及组件复合</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var LiItem = React.createClass({
+        render: function() {
+          return <li>{this.props.data.name}</li>;
+        }
+      });
+      var App = React.createClass({
+        render: function () {
+          return (
+          <ul>
+            {this.props.results.map(function(result){
+              return <LiItem key={result.id} data={result} />;
+            })}
+          </ul>
+          )
+        }
+      });
+      
+      var results = [
+        {id:'itbilu.com', name:'IT笔录'},
+        {id:'yijiebuyi.com', name:'一介布衣'},
+        {id:'niefengjun.cn', name:'老聂'}
+      ];
+      ReactDOM.render(
+        <App results={results} />,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
