@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>使用JSX定义React组件－组件使用动态值-函数</title>
+    <title>Reach的JSX语法与HTML的异同-JavaScript表达式-变更与函数</title>
     <script src="../build/react.js"></script>
     <script src="../build/react-dom.js"></script>
     <script src="../build/browser.min.js"></script>
@@ -10,26 +10,28 @@
   <body>
     <div id="example"></div>
     <script type="text/babel">
-     function dateToString(d) {
+      var name = "今天是";
+
+      function dateToString(d) {
         return [
           d.getFullYear(),
           d.getMonth()+1,
           d.getDate()
         ].join('-');
       }
-      
+
       var App = React.createClass({
         render: function () {
           return (
-          <div className="divider">
-            <h2>{dateToString(new Date())}</h2><hr/>
-          </div>
+            <ul>
+              <li><span>{this.props.name}</span>：<strong>{this.props.date}</strong></li>
+            </ul>
           )
         }
       });
-
+      
       ReactDOM.render(
-        React.createElement(App),
+        <App name={name} date={dateToString(new Date())} />,
         document.getElementById('example')
       );
     </script>
