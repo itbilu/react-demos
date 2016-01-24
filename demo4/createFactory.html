@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 相关方法（API）介绍-createClass()</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var AppClass = React.createClass({displayName: 'App',
+        render: function () {
+          return (React.createElement('div', {className:'myClass'},  
+            React.createElement('h2', null, this.props.children),
+            React.createElement('hr')
+          ));
+        }
+      });
+      var App = React.createFactory(AppClass);
+
+      ReactDOM.render(
+        App(null, 'itbilu.com'),
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
