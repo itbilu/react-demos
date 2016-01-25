@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 相关方法（API）介绍－findDOMNode()</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var App = React.createClass({
+        render: function () {
+          return (
+          <div className="divider">
+            <h2>{this.props.children}</h2><hr/>
+          </div>
+          )
+        }
+      });
+
+      var reactEle = ReactDOM.render(
+        <App>itbilu.com</App>,
+        document.getElementById('example')
+      );
+
+      var element = ReactDOM.findDOMNode(reactEle);
+    </script>
+  </body>
+</html>

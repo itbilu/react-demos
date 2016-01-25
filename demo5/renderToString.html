@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 相关方法（API）介绍－ renderToString()</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom-server.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var html = ReactDOMServer.renderToString(
+        <div className="divider">
+          <h2>itbilu.com</h2><hr/>
+        </div>);
+      
+      document.getElementById('example').innerHTML = html;
+    </script>
+  </body>
+</html>
