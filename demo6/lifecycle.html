@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React组件生命周期</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <button id="update">更新</button>
+    <button id="delete">清理</button>
+    
+    <script type="text/babel">
+      var App = React.createClass({
+        displayName: 'App',
+        componentWillMount: function(){
+          // 初始化期，组件加载前调用
+          console.log('组件将要加载');
+        },
+        componentWillUpdate: function(){
+          // 存在期，组件状态改变后重新渲染前调用
+          console.log('组件将要更新');
+        },
+        render: function () {
+          // 初始化期或存在期调用
+          return (
+            <h1>{this.props.name}</h1>
+          )
+        },
+        componentWillUnmount: function (){
+          // 销毁&清理期调用
+          console.log('组件将要销毁');
+        }
+      });
+
+      var reactCom = ReactDOM.render(
+        <App name="itbilu.com" />,
+        document.getElementById('example')
+      );
+
+      document.getElementById('update').addEventListener('click', function(){
+        reactCom.setProps({name:'IT笔录'});
+      })
+
+      document.getElementById('delete').addEventListener('click', function(){
+        ReactDOM.unmountComponentAtNode(document.getElementById('example'));
+      })
+
+    </script>
+  </body>
+</html>
