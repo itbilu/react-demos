@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 定义组件的参数对象-propTypes</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    
+    <script type="text/babel">
+      var App = React.createClass({
+        propTypes: {
+            site: React.PropTypes.shape({
+              domain: React.PropTypes.string.isRequired,
+              name: React.PropTypes.string
+            }).isRequired
+        },
+        render: function() {
+          return (
+            <p>
+              站点信息－{this.props.site.name}：{this.props.site.domain}
+            </p>
+          );
+        }
+      });
+
+      var site = {
+        name: 4,  // 不合法的类型
+        domain: 'itbilu.com'
+      }
+      ReactDOM.render(
+        <App site={site} />,
+        document.getElementById('example')
+      );
+
+      // 运行后会抛出以下错误
+      // Warning: Failed propType: Invalid prop `site.name` of type `number` supplied to `App`, expected `string`.
+    </script>
+  </body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 定义组件的参数对象-mixins</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    
+    <script type="text/babel">
+      var SetIntervalMixin = {
+        componentWillMount: function() {
+          this.intervals = [];
+        },
+        setInterval: function() {
+          this.intervals.push(setInterval.apply(null, arguments));
+        },
+        componentWillUnmount: function() {
+          this.intervals.map(clearInterval);
+        }
+      };
+
+      var TickTock = React.createClass({
+        mixins: [SetIntervalMixin], // 引用 mixin
+        getInitialState: function() {
+          return {seconds: 0};
+        },
+        componentDidMount: function() {
+          this.setInterval(this.tick, 1000); // 调用 mixin 的方法
+        },
+        tick: function() {
+          this.setState({seconds: this.state.seconds + 1});
+        },
+        render: function() {
+          return (
+            <p>
+              React 已经运行了 {this.state.seconds} 秒。
+            </p>
+          );
+        }
+      });
+
+      ReactDOM.render(
+        <TickTock />,
+        document.getElementById('example')
+      );
+
+
+    </script>
+  </body>
+</html>
+
+
+

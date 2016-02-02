@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 定义组件的参数对象-mixins</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    
+    <script type="text/babel">
+      var MyComponent = React.createClass({
+        statics: {
+          customMethod: function(foo) {
+            return foo === 'bar';
+          }
+        },
+        render: function() {
+        }
+      });
+
+      var result = MyComponent.customMethod('bar');
+      console.log(result);   // true
+    </script>
+  </body>
+</html>
