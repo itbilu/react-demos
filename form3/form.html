@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noarchive">
+	<title>React 表单组件</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+    var MyInput = React.createClass({
+      getInitialState: function() {
+        return {name: 'IT笔录',
+          domain: 'itbilu.com'};
+      },
+      handleChange: function(name, event) {
+        var newState = {};
+        newState[name] = event.target.value;
+        this.setState(newState);
+      },
+      handleSubmit: function(event){
+        event.preventDefault();
+        alert(this.state.name+'-'+this.state.domain)
+      },
+      render: function() {
+        return (<form onSubmit={this.handleSubmit}>
+          <label htmlFor="name">名称：</label>
+          <input type="text" name="name" value={this.state.name} onChange={this.handleChange.bind(this, 'name')} />
+          <br />
+          <label htmlFor="domain">域名：</label>
+          <input type="text" name="domain" value={this.state.domain} onChange={this.handleChange.bind(this, 'domain')} />
+          <br />
+          <input value="提交" type="submit" />
+        </form>);
+      }
+    });
+
+    ReactDOM.render(
+      <MyInput />,
+      document.getElementById('example')
+    );
+</script>
+</body>
+</html>

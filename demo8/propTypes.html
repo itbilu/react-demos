@@ -16,7 +16,8 @@
             site: React.PropTypes.shape({
               domain: React.PropTypes.string.isRequired,
               name: React.PropTypes.string
-            }).isRequired
+            }).isRequired,
+            name: React.PropTypes.any.isRequired
         },
         render: function() {
           return (
@@ -28,11 +29,11 @@
       });
 
       var site = {
-        name: 4,  // 不合法的类型
+        name: 'IT笔录',
         domain: 'itbilu.com'
       }
       ReactDOM.render(
-        <App site={site} />,
+        <App site={site} name='APP' />,
         document.getElementById('example')
       );
 
@@ -41,3 +42,6 @@
     </script>
   </body>
 </html>
+
+
+

@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noarchive">
+	<title>React 表单组件</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+    var MyRadio = React.createClass({
+      propTypes: {
+        onChange: React.PropTypes.func
+      },
+      getInitialState: function() {
+        return { value:this.props.defaultValue }
+      },
+      handleChange: function(event) {
+        if(this.props.onChange) {
+          this.props.onChange(event);
+        }
+        console.log(this.props)
+        this.setState({
+          value: event.target.value
+        });
+      },
+      render: function() {
+        var children = [];
+        var value = this.props.value || this.state.value;
+
+        React.Children.forEach(this.props.children, function(child, i){
+          var lable = (
+            <label>
+              <input 
+                type = "radio"
+                name = {this.props.name}
+                value = {child.props.value} 
+                checked = {child.props.value == value} 
+                onChange = {this.handleChange}
+              />
+              {child.props.children}
+              <br />
+            </label>
+          );
+
+          children.push(Object.assign({}, lable, { key: 'label'+i }));
+        }.bind(this));
+
+        return <span>{children}</span>;
+      }
+    });
+
+    /* var MyForm = React.createClass({
+      handleSubmit: function(event){
+        event.preventDefault();
+        alert(this.refs.radio.state.value)
+      },
+      render: function() {
+        return (<form onSubmit={this.handleSubmit}>
+          <MyRadio ref="radio" name="myRadio" defaultValue="yijiebuyi">
+            <option value="itbilu">itbilu.com</option>
+            <option value="yijiebuyi">yijiebuyi.com</option>
+          </MyRadio>
+          <input value="提交" type="submit" />
+        </form>);
+      }
+    }); */
+
+    var MyForm = React.createClass({
+      getInitialState: function() {
+        return { myRadio:'itbilu' }
+      },
+      handleChange: function(event) {
+        this.setState({
+          myRadio: event.target.value
+        });
+      },
+      handleSubmit: function(event){
+        event.preventDefault();
+        alert(this.state.myRadio)
+      },
+      render: function() {
+        return (<form onSubmit={this.handleSubmit}>
+          <MyRadio name="myRadio" value={this.state.myRadio} onChange={this.handleChange}>
+            <option value="itbilu">itbilu.com</option>
+            <option value="yijiebuyi">yijiebuyi.com</option>
+          </MyRadio>
+          <input value="提交" type="submit" />
+        </form>);
+      }
+    });
+
+    ReactDOM.render(
+      <MyForm />,
+      document.getElementById('example')
+    );
+</script>
+</body>
+</html>

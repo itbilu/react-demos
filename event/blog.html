@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noarchive">
+	<title>React 事件系统</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+
+class LikeButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {liked: false};
+  }
+
+  handleClick(e) {
+    this.setState({ liked: !this.state.liked });
+  }
+
+  render() {
+    const text = this.state.liked ? '喜欢' : '不喜欢';
+    return (
+      <p onClick={this.handleClick.bind(this)}>
+          你<strong>{text}</strong>这个，点击更改。
+      </p>
+    );
+  }
+}
+
+ReactDOM.render(
+    <LikeButton />,
+    document.getElementById('example')
+);
+</script>
+</body>
+</html>

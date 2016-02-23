@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noarchive">
+	<title>React DOM操作-ref属性</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+    var MyInput = React.createClass({
+      handleClick: function() {
+        // 使用getDOMNode底层的API
+        this.refs.myInput.getDOMNode().focus();
+      },
+      componentDidMount: function() {
+        ReactDOM.findDOMNode(this.refs.myInput).value = 'itbilu.com';
+      },
+      render: function() {
+        return <input type="text" ref="myInput" />;
+      }
+    });
+
+    ReactDOM.render(
+      <MyInput />,
+      document.getElementById('example')
+    );
+</script>
+</body>
+</html>

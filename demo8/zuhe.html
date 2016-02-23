@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 定义组件的参数对象-propTypes</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    
+    <script type="text/babel">
+      var Avatar = React.createClass({
+        render: function() {
+          return (
+            <div>
+              <ProfilePic username={this.props.username} />
+              <ProfileLink username={this.props.username} />
+            </div>
+          );
+        }
+      });
+
+      var ProfilePic = React.createClass({
+        render: function() {
+          return (
+            <img src={'http://itbilu.com/' + this.props.username + '/picture'} />
+          );
+        }
+      });
+
+      var ProfileLink = React.createClass({
+        render: function() {
+          return (
+            <a href={'http://itbilu.com/' + this.props.username}>
+              {this.props.username}
+            </a>
+          );
+        }
+      });
+
+      ReactDOM.render(
+        <Avatar username="nodejs" />,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

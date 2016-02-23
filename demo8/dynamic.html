@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 定义组件的参数对象-propTypes</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    
+    <script type="text/babel">
+      var ListItemWrapper = React.createClass({
+        render: function() {
+          return <li><a href="{this.props.data.url}">{this.props.data.text}</a></li>;
+        }
+      });
+
+      var Menu = React.createClass({
+        render: function() {
+          return (
+            <ul>
+              {this.props.menus.map(function(result) {
+                 return <ListItemWrapper key={result.id} data={result} />;
+              })}
+            </ul>
+          );
+        }
+      });
+
+      var menus = [{id: 1, url:'http://itbilu.com/nodejs', text:'Node.js'},
+        {id: 2, url:'http://itbilu.com/javascript', text:'JavaScript'},
+        {id: 3, url:'http://itbilu.com/db', text:'数据库'}
+      ]
+      ReactDOM.render(
+        <Menu menus={menus} />,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noarchive">
+	<title>React 表单组件</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+    var MyInput = React.createClass({
+      getInitialState: function() {
+        return {value: 'itbilu.com'};
+      },
+      handleChange: function(syntheticEvent) {
+        // 通过 target访问触发事件的DOM节点
+        var DOMNode = syntheticEvent.target;
+        // 将输入值传入受控组件中
+        this.setState({value: DOMNode.value});
+      },
+      render: function() {
+        return <input type="text" value={this.state.value} onChange={this.handleChange} />;
+      }
+    });
+
+    ReactDOM.render(
+      <MyInput />,
+      document.getElementById('example')
+    );
+</script>
+</body>
+</html>

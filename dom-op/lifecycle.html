@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noarchive">
+	<title>React DOM操作-生命周期</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+    var MyInput = React.createClass({
+      handleClick: function() {
+        this.setState({text:'itbilu.com'});
+      },
+      getInitialState: function() {
+        return {text: ''};
+      },
+      shouldComponentUpdate: function(){
+        ReactDOM.findDOMNode(this.refs.myInput).value = 'IT笔录';
+        return false;
+      },
+      render: function() {
+        return <input type="text" ref="myInput" onClick={this.handleClick} value={this.state.text} />;
+      }
+    });
+
+    ReactDOM.render(
+      <MyInput />,
+      document.getElementById('example')
+    );
+</script>
+</body>
+</html>

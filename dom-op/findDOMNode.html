@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noarchive">
+	<title>React DOM操作-ref属性</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+    var MyInput = React.createClass({
+      render: function() {
+        return <input type="text" />;
+      }
+    });
+
+    var myInput = ReactDOM.render(
+      <MyInput />,
+      document.getElementById('example')
+    );
+
+    // 使用findDOMNode()方法外部访问组件
+    ReactDOM.findDOMNode(myInput).value = 'itbilu.com';
+    
+    // 使用getDOMNode()方法外部访问组件
+    myInput.getDOMNode().focus();
+</script>
+</body>
+</html>

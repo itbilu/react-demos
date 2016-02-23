@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 定义组件的参数对象-propTypes</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    
+    <script type="text/babel">
+      var CheckLink = React.createClass({
+        render: function() {
+          // 这样会把 CheckList 所有的 props 复制到 <a>
+          return <a {...this.props}>{'√ '}{this.props.children}</a>;
+        }
+      });
+
+      ReactDOM.render(
+        <CheckLink href="/checked.html">
+          Click here!
+        </CheckLink>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

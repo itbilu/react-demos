@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noarchive">
+  <title>React 事件系统</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+var Box = React.createClass({
+  getInitialState: function() {
+    return {windowWidth: window.innerWidth};
+  },
+
+  handleResize: function(e) {
+    this.setState({windowWidth: window.innerWidth});
+  },
+
+  componentDidMount: function() {
+    window.addEventListener('resize', this.handleResize);
+  },
+
+  componentWillUnmount: function() {
+    window.removeEventListener('resize', this.handleResize);
+  },
+
+  render: function() {
+    return <div>当前窗口宽度： {this.state.windowWidth}</div>;
+  }
+});
+
+ReactDOM.render(
+    <Box />,
+    document.getElementById('example')
+);
+</script>
+</body>
+</html>

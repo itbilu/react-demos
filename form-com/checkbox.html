@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noarchive">
+	<title>React 表单组件</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+    var MyForm = React.createClass({
+      getInitialState: function() {
+        return {checked: false};
+      },
+      handleChange: function(event) {
+        this.setState({checked: event.target.checked});
+      },
+      render: function() {
+        return (<input type="checkbox" checked={this.state.checked} onChange={this.handleChange} />)
+      }
+    });
+
+    ReactDOM.render(
+      <MyForm />,
+      document.getElementById('example')
+    );
+</script>
+</body>
+</html>
