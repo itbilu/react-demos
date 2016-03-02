@@ -6,7 +6,7 @@ var ReacDOMServer = require('react-dom/server');
 var MyComponent =  React.createFactory(require('../components/MyComponent'));
 
 
-/* GET home page. */
+/* 主页 */
 router.get('/', function(req, res) {
 	var num = Math.random();
 	// 服务端渲染HTML
