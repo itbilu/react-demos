@@ -1,0 +1,28 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "debug": "~0.7.4",
+    "ejs": "~0.8.5",
+    "express": "~4.0.0",
+    "fbjs": "^0.7.2",
+    "morgan": "~1.0.0",
+    "node-jsx": "^0.13.3",
+    "react": "^0.14.7",
+    "react-addons": "^0.9.0",
+    "react-children": "0.0.3",
+    "react-dom": "^0.14.7",
+    "react-universal": "0.0.3",
+    "static-favicon": "~1.0.0"
+  },
+  "devDependencies": {
+    "gulp-browserify": "^0.5.1",
+    "reactify": "^1.1.1"
+  }
+}

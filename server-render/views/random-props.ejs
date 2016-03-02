@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React 服务端渲染－ renderToString()</title>
+  </head>
+  <body>
+    <!-- 挂载React组件 -->
+    <div id="example"><%- html %></div>
+    <script type="text/javascript">
+      // 传递服务端状态
+      var initProps = {num:<%- num %>};
+    </script>
+    <!-- main.js包含通过gulp和browserify 打包的React、MyComponent组件等 -->
+    <script src="/main.js"></script>
+  </body>
+</html>

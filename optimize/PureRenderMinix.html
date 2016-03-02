@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noarchive">
+	<title>React 性能优化－shouldComponentUpdate</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/react-with-addons.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+    var MyInput = React.createClass({
+      mixin: [React.addons.PureRenderMinix],
+      getInitialState: function() {
+        return {value: 'itbilu.com'};
+      },
+      handleChange: function(event) {
+        this.setState({value: event.target.value});
+      },
+      render: function() {
+        return <input type="text" value={this.state.value} onChange={this.handleChange} />;
+      }
+    });
+
+    ReactDOM.render(
+      <MyInput />,
+      document.getElementById('example')
+    );
+</script>
+</body>
+</html>
