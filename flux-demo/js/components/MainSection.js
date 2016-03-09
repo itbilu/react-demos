@@ -20,7 +20,7 @@ var MainSection = React.createClass({
     var items = [];
 
     for (var key in results) {
-      items.push(<ResultItem site={results[key]} />);
+      items.push(<ResultItem key={key} site={results[key]} />);
     }
 
     var hint;
