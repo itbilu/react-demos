@@ -5,8 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-require('node-jsx').install()
-
+// 注意要在引入'路由'支持，引入node-jsx模块
+require('node-jsx').install();
 var routes = require('./routes/index');
 
 var app = express();
